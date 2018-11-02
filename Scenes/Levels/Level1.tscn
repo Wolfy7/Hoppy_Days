@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/GameState.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/PlatformTiles.tres" type="TileSet" id=4]
+[ext_resource path="res://Scenes/SpikesTop.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/SpikesBottom.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=7]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Area2D
+
+func _on_SpikesTop_body_entered(body):
+	print(\"ouch\")"
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 1 )
+starting_lives = 3
+coin_target = 20
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 238.871, 751.688 )
+
+[node name="Camera2D" parent="Player" instance=ExtResource( 3 )]
+
+[node name="TileMap" type="TileMap" parent="."]
+mode = 0
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 2
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 65584, 6, 0, 131095, 2, 0, 196671, 2, 0, 262153, 6, 0, 262182, 2, 0, 327761, 2, 0, 327776, 2, 0, 393217, 6, 0, 458766, 2, 0, 524318, 2, 0, 524362, 6, 0, 589875, 2, 0, 655383, 6, 0, 655454, 6, 0, 720934, 6, 0, 786449, 6, 0, 786518, 2, 0, 852026, 6, 0, 917504, 2, 0, 917513, 2, 0, 917546, 2, 0, 917571, 2, 0, 917584, 6, 0, 983068, 2, 0, 1245210, 536870917, 0, 1310725, 536870913, 0, 1310775, 536870913, 0, 1441812, 536870913, 0, 1441865, 536870913, 0, 1507339, 536870917, 0, 1507362, 536870913, 0, 1572912, 536870917, 0, 1703940, 536870913, 0, 1703991, 536870917, 0, 1703997, 536870917, 0, 1769516, 536870913, 0, 1835084, 536870913, 0, 1900556, 536870913, 0, 1966107, 536870913, 0, 1966145, 536870913, 0, 2097171, 536870917, 0, 2097186, 536870917, 0, 2097196, 536870917, 0, 2097205, 536870917, 0, 2097206, 536870917, 0, 2162693, 536870917, 0 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="Spikes" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 2012.36, 934.802 )
+
+[node name="SpikesTop" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( -1209.77, -64.5994 )
+
+[node name="SpikesTop5" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( 210.28, -444.036 )
+
+[node name="SpikesTop2" parent="Spikes" instance=ExtResource( 5 )]
+
+[node name="SpikesTop3" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( -748.105, 456.098 )
+
+[node name="SpikesTop4" parent="Spikes" instance=ExtResource( 5 )]
+position = Vector2( -415.737, -322.899 )
+
+[node name="SpikesBottom" parent="Spikes" instance=ExtResource( 6 )]
+position = Vector2( -1036.35, -364.572 )
+script = SubResource( 1 )
+
+[node name="SpikesBottom2" parent="Spikes" instance=ExtResource( 6 )]
+position = Vector2( -1715.53, 74.0249 )
+script = SubResource( 1 )
+
+[node name="SpikesBottom3" parent="Spikes" instance=ExtResource( 6 )]
+position = Vector2( 77.7263, -307.203 )
+script = SubResource( 1 )
+
+[node name="SpikesBottom4" parent="Spikes" instance=ExtResource( 6 )]
+position = Vector2( -378.961, -688.912 )
+script = SubResource( 1 )
+
+[node name="Coins" type="Node2D" parent="."]
+position = Vector2( 2012.36, 934.802 )
+
+[node name="Coin" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -1404.9, -105.997 )
+frame = 3
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -1313.16, -198.744 )
+frame = 3
+
+[node name="Coin13" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -1205.92, -239.18 )
+frame = 3
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -1104.19, -221.301 )
+
+[node name="Coin14" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -1062.73, -109.181 )
+frame = 1
+
+[node name="Coin15" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -989.35, -190.618 )
+frame = 1
+
+[node name="Coin16" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -919.592, -263.495 )
+frame = 0
+
+[node name="Coin17" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -673.459, -186.139 )
+frame = 5
+
+[node name="Coin18" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -652.362, -80.6539 )
+frame = 5
+
+[node name="Coin19" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -643.571, 163.721 )
+frame = 4
+
+[node name="Coin20" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -640.055, 263.932 )
+frame = 3
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -1325.99, 485.267 )
+frame = 3
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -825.264, -213.27 )
+frame = 3
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -654.499, 44.775 )
+frame = 3
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -510.297, 44.775 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -369.89, 52.3646 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -1060.54, 758.194 )
+frame = 1
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -521.681, 860.653 )
+frame = 1
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 7 )]
+position = Vector2( -301.584, 868.243 )
+frame = 0
+
+[connection signal="body_entered" from="Spikes/SpikesBottom" to="Spikes/SpikesBottom" method="_on_SpikesTop_body_entered"]
+[connection signal="body_entered" from="Spikes/SpikesBottom2" to="Spikes/SpikesBottom2" method="_on_SpikesTop_body_entered"]
+[connection signal="body_entered" from="Spikes/SpikesBottom3" to="Spikes/SpikesBottom3" method="_on_SpikesTop_body_entered"]
+[connection signal="body_entered" from="Spikes/SpikesBottom4" to="Spikes/SpikesBottom4" method="_on_SpikesTop_body_entered"]
