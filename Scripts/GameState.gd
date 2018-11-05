@@ -24,6 +24,7 @@ func hurt():
 	Global.Player.hurt()
 	update_GUI()
 	animate_GUI("Hurt")
+	Global.pain_sfx.play()
 	if lives < 0:
 		end_game()
 		
@@ -41,4 +42,10 @@ func life_up():
 	animate_GUI("LifePulse")
 
 func end_game():
-	get_tree().change_scene("res://Scenes/GameOver.tscn")
+	get_tree().change_scene(Global.GameOver)
+	
+func win_game():
+	get_tree().change_scene(Global.Victory)
+
+func _on_Portal_body_entered(body):
+	win_game()
